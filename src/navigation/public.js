@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { View, Text } from 'react-native'
+import {  } from '@react-navigation/native'
 
 export default function Public() {
     return (
