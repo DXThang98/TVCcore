@@ -39,8 +39,8 @@ export const apiPost = async (url = '', body = {}, config = {}) => {
     const response = await apiSauce.post(url, body, config)
 
     if (response.ok && response.code === 200) {
-        return response.data
+        return response
     } else {
-        throw new Error(JSON.stringify(response.problems))
+        throw new Error(JSON.stringify(response))
     }
 }
