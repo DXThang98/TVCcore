@@ -1,1 +1,1 @@
-export const CORE_DEFAULT_BASE_URL = 'http://mobileapi.tinhvanconsulting.com:12789/MobileGateway'
+export const CORE_DEFAULT = 'http://mobileapi.tinhvanconsulting.com:12789/MobileGateway'

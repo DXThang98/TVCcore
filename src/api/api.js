@@ -1,9 +1,9 @@
 import { create } from 'apisauce'
-import { getData } from '../utils/storage'
-import { getApiError } from '../utils/error'
-import { CORE_DEFAULT_BASE_URL } from '../constants/api'
+import { getData } from '~utils/storage'
+import { getApiError } from '~utils/error'
+import { CORE_DEFAULT } from '~constants/api'
 
-const api = async (baseURL = CORE_DEFAULT_BASE_URL) => {
+const api = async (baseURL = CORE_DEFAULT) => {
     const defaultBaseURL = await getData('baseURL')
     const token = await getData('token')
 
