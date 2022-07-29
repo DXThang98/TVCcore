@@ -19,6 +19,7 @@ export const isStringDate = (str) => new Date(str).toString() === 'Invalid Date'
 export const isFunction = (func) => typeof func === 'function'
 
 export const isJSONString = (value) => {
+    if (!value) return false
     try {
         JSON.parse(value)
     } catch (err) {

@@ -14,7 +14,8 @@ export const storeData = async (key, value) => {
 export const getData = async (key) => {
     try {
         const data = await AsynscStorage.getItem(key)
-        return isJSONString(data) ? JSON.stringify(data) : data
+
+        return isJSONString(data) ? JSON.parse(data) : data
     } catch (err) {
         console.error(err)
     }

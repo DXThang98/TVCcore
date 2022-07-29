@@ -1,3 +1,3 @@
-import api from '../api'
+import { apiGet } from '../api'
 
-export const getConfig = (body) => api('url', body)
+export const getConfig = (body) => apiGet('GetConfig', body)
