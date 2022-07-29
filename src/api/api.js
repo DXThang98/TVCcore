@@ -1,12 +1,14 @@
 import { create } from 'apisauce'
 import { getData } from '../utils/storage'
+import { getApiError } from '../utils/error'
+import { CORE_DEFAULT_BASE_URL } from '../constants/api'
 
-const api = async (baseURL) => {
+const api = async (baseURL = CORE_DEFAULT_BASE_URL) => {
     const defaultBaseURL = await getData('baseURL')
     const token = await getData('token')
 
     return create({
-        baseURL: defaultBaseURL || baseURL,
+        baseURL: defaultBaseURL ? defaultBaseURL : baseURL,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -16,10 +18,29 @@ const api = async (baseURL) => {
     })
 }
 
-export default async (url = '', body = {}, config = {}) => {
-    const response = await api.post(url, body, config)
+export const apiGet = async (url = '', params = {}, config = {}) => {
 
-    if (!response.ok) throw new Error('')
+    const apiSauce = await api()
+    const response = await apiSauce.get(url, params, config)
 
-    return response.data
+    if (
+        response.ok &&
+        response.status === 200 &&
+        response.data.responseStatus > 0
+    ) {
+        return response
+    } else {
+        throw new Error(getApiError(response))
+    }
+}
+
+export const apiPost = async (url = '', body = {}, config = {}) => {
+    const apiSauce = await api()
+    const response = await apiSauce.post(url, body, config)
+
+    if (response.ok && response.code === 200) {
+        return response.data
+    } else {
+        throw new Error(JSON.stringify(response.problems))
+    }
 }
