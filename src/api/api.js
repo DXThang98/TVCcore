@@ -25,7 +25,7 @@ export const apiGet = async (url = '', params = {}, config = {}) => {
 
     if (
         response.ok &&
-        response.status === 200 &&
+        response.status === 200 && 
         response.data.responseStatus > 0
     ) {
         return response

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { View, Text, TextInput, Button } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 
 import Font from '~styles/font'
 
-import { getConfig } from '../api/company'
+import { getConfig } from '~slices/config'
 
 import { CORE_DEFAULT } from '~constants/api'
 
 export function App() {
     const [customerCode, setcustomerCode] = useState(null)
 
-    console.log('awdawd', CORE_DEFAULT)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         SplashScreen.hide()
@@ -19,14 +20,12 @@ export function App() {
 
     const handleChange = (e) => setcustomerCode(e)
 
-    const handleSubmit = async () => {
-        try {
-            const res = await getConfig({ customerCode })
-            console.log('res', res)
-        } catch (err) {
-            console.log('error', err)
-        }
+    const handleSubmit = () => {
+        dispatch(getConfig({
+            customerCode
+        }))
     }
+
 
     return (
         <View>
