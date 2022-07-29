@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, TextInput, Button } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 
+import font from '../styles/font'
+
 import { getConfig } from '../api/company'
 
 export function App() {
@@ -24,7 +26,9 @@ export function App() {
 
     return (
         <View>
-            <Text>App</Text>
+            <Text style={{
+                fontFamily: font.family.bold
+            }}>App</Text>
             <TextInput
                 onChangeText={handleChange}
                 value={customerCode}
