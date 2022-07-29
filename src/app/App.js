@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import RootNavigation from '~navigation/navigation'
 import SplashScreen from 'react-native-splash-screen'
 import { useDispatch } from 'react-redux'
 
