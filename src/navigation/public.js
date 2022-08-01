@@ -1,21 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import SelectCompany from '~core/SelectCompany'
-
-//dynamic import 'tiết kiệm được tí bộn nhớ, why not'
-const getLoginComponent = (code = null) => {
-    switch (code) {
-        case 'BVG':
-            return require('../companies/bvg/screen/Login').default
-        default:
-            return require('../core/Login').default
-    }
-}
+import { getLoginComponent } from './navigationHelper'
 
 const Stack = createNativeStackNavigator()
 
-export default function Public() {
+export default function Public({ navigation }) {
+    const companyCode = useSelector(state => state.config.data?.env?.name)
+
+
 
     return (
         <Stack.Navigator
@@ -23,8 +18,8 @@ export default function Public() {
                 headerShown: false,
             }}
         >
-            <Stack.Screen name='company' component={SelectCompany} />
-            <Stack.Screen name='login' component={getLoginComponent('BVG')} />
+            {!companyCode && <Stack.Screen name='company' component={SelectCompany} />}
+            {companyCode && <Stack.Screen name='login' component={getLoginComponent(companyCode)} />}
         </Stack.Navigator>
     )
 }

@@ -7,7 +7,7 @@ export default function Login(props) {
     const { navigation } = props
     return (
         <View>
-            <Text>Login</Text>
+            <Text style={{ color: 'black' }}>Login tvc</Text>
             <Button title='nav' onPress={() => navigation.navigate('company')} />
         </View>
     )

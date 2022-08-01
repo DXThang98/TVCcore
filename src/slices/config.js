@@ -36,7 +36,7 @@ export function getConfig(body) {
         dispatch(getConfigRequest())
         try {
             const response = await apiGet('/getConfig', body, axiosConfig)
-                dispatch(getConfigSuccess(response.data))
+            dispatch(getConfigSuccess(response.data))
         } catch (error) {
             dispatch(getConfigFailure(error.message))
         }
