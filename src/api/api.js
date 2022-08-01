@@ -2,11 +2,12 @@ import { create } from 'apisauce'
 import { getData } from '~utils/storage'
 import { getApiError } from '~utils/error'
 import { CORE_DEFAULT } from '~constants/api'
+import { store } from '../../index'
 
 const api = async (baseURL = CORE_DEFAULT) => {
-    const defaultBaseURL = await getData('baseURL')
+    const defaultBaseURL = store.getState().config.data?.env.linkApi
     const token = await getData('token')
-
+    console.log('defaultBaseURL', defaultBaseURL)
     return create({
         baseURL: defaultBaseURL ? defaultBaseURL : baseURL,
         headers: {
@@ -25,7 +26,7 @@ export const apiGet = async (url = '', params = {}, config = {}) => {
 
     if (
         response.ok &&
-        response.status === 200 && 
+        response.status === 200 &&
         response.data.responseStatus > 0
     ) {
         return response

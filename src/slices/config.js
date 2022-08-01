@@ -12,23 +12,28 @@ const configSlice = createSlice({
     name: 'config',
     initialState,
     reducers: {
-        getConfigRequest: state => {
-            state.loading = true
-        },
-        getConfigSuccess: (state, { payload }) => {
-            state.loading = false
-            state.error = false
-            state.message = payload.message
-            state.data = payload
-        },
-        getConfigFailure: (state, { payload }) => {
-            state.loading = false
-            state.error = true
-            state.message = payload
-        }
+        getConfigRequest: state => ({
+            ...state,
+            loading: true
+        }),
+        getConfigSuccess: (state, { payload }) => ({
+            ...state,
+            loading: false,
+            message: 'success',
+            data: payload,
+        }),
+        getConfigFailure: (state, { payload }) => ({
+            ...state,
+            loading: false,
+            error: true,
+            message: payload,
+        }),
+        resetConfig: () => ({
+            ...initialState
+        })
     }
 })
-export const { getConfigRequest, getConfigSuccess, getConfigFailure } = configSlice.actions
+export const { getConfigRequest, getConfigSuccess, getConfigFailure, resetConfig } = configSlice.actions
 export default configSlice.reducer
 
 export function getConfig(body) {

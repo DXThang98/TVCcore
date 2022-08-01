@@ -20,9 +20,6 @@ export const NavigationSelector = (company = null) => {
 }
 
 export const getLoginComponent = (code = null) => {
-    const lowerCase = code.toLowerCase()
-    console.log('code', lowerCase)
-
     switch (code) {
         case 'MAVIN':
             return require('../companies/mavin/screens/login').default

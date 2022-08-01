@@ -10,8 +10,6 @@ const Stack = createNativeStackNavigator()
 export default function Public({ navigation }) {
     const companyCode = useSelector(state => state.config.data?.env?.name)
 
-
-
     return (
         <Stack.Navigator
             screenOptions={{

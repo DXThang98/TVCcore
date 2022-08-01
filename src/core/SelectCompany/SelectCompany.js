@@ -12,7 +12,7 @@ export default function SelectCompany(props) {
     const { navigation } = props
     const dispatch = useDispatch()
     const { loading, data, message, error } = useSelector(state => state.config)
-
+    console.log('data', data)
     //
     useEffect(() => {
         const nav = async () => {
