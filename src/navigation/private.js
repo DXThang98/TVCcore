@@ -10,11 +10,14 @@ const Stack = createNativeStackNavigator()
 const CreateStack = ({ stack }) => {
     const companyCode = useSelector(state => state.config.data?.env.customerKey)
     const companyStack = useMemo(() => NavigationSelector(companyCode), [])
+    const a = companyStack.default()
+
+    console.log("companyStack", companyStack)
 
     return (
         <Stack.Navigator>
             {
-                stack?.map(item => <Stack.Screen name={item} key={item} component={companyStack.default[item]} />)
+                stack?.map(item => <Stack.Screen name={item} key={item} component={a[item]} />)
             }
         </Stack.Navigator>
     )
@@ -28,7 +31,7 @@ export default function Private() {
         <Tab.Navigator>
             {
                 navStack ? (
-                    Object.keys(navStack).map(field => <Tab.Screen name={field} key={field} component={() => <CreateStack stack={navStack[field]} />} />)
+                    Object.keys(navStack).map(field => <Tab.Screen name={field} key={field} children={() => <CreateStack stack={navStack[field]} />} />)
                 ) : null
             }
         </Tab.Navigator>
