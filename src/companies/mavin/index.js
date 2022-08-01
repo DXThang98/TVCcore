@@ -10,5 +10,6 @@ export default () => {
         obj[item.container] = () => <View><Text>{item.container}</Text></View>
     })
 
+    console.log("mavin obj", obj)
     return obj
 }

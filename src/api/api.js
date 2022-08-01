@@ -22,6 +22,7 @@ const api = async (baseURL = CORE_DEFAULT) => {
 export const apiGet = async (url = '', params = {}, config = {}) => {
 
     const apiSauce = await api()
+    delete apiSauce.headers["Authorization"]
     const response = await apiSauce.get(url, params, config)
 
     if (
@@ -29,16 +30,17 @@ export const apiGet = async (url = '', params = {}, config = {}) => {
         response.status === 200 &&
         response.data.responseStatus > 0
     ) {
+        console.log("response", response)
         return response
     } else {
-        throw new Error(getApiError(response))
+        throw new Error(JSON.stringify(response))
+        //throw new Error(getApiError(response))
     }
 }
 
 export const apiPost = async (url = '', body = {}, config = {}) => {
     const apiSauce = await api()
     const response = await apiSauce.post(url, body, config)
-    console.log("response=============", response)
     if (response.ok && response.status === 200) {
         return response
     } else {
