@@ -31,8 +31,8 @@ function Navigation({ auth, config }) {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    config: state.config,
+    auth: state.auth.data,
+    config: state.config.data,
 })
 const ConnectedNavigator = connect(mapStateToProps)(Navigation)
 export default ConnectedNavigator

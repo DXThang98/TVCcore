@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { apiPost, axiosConfig } from '~api/api'
+import { apiGet, axiosConfig } from '~api/api'
 
 const initialState = {
     loading: false,
@@ -22,28 +22,29 @@ const authSlice = createSlice({
             message: 'success',
             data: payload,
         }),
-        authFailure: (state, { payload }) => ({
+        getAuthFailure: (state, { payload }) => ({
             ...state,
             loading: false,
             error: true,
             message: payload,
         }),
-        authReset: () => ({
-            ...initialState
+        auth: () => ({
+            ...initialState,
+            data: true,
         })
     }
 })
-export const { authRequest, authSuccess, authFailure, authReset } = authSlice.actions
-export default authSlice.reducer
+export const { getAuthRequest, getAuthSuccess, getAuthFailure, auth } = configSlice.actions
+export default configSlice.reducer
 
-export function auth(body) {
-    return async dispatch => {
-        dispatch(authRequest())
-        try {
-            const response = await apiPost('system/login', body, axiosConfig)
-            dispatch(authSuccess(response.data))
-        } catch (error) {
-            dispatch(authFailure(error.message))
-        }
-    }
-}
+// export function getConfig(body) {
+//     return async dispatch => {
+//         dispatch(getConfigRequest())
+//         try {
+//             const response = await apiGet('/getConfig', body, axiosConfig)
+//             dispatch(getConfigSuccess(response.data))
+//         } catch (error) {
+//             dispatch(getConfigFailure(error.message))
+//         }
+//     }
+// }

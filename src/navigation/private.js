@@ -2,33 +2,33 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { NavigationSelector } from './navigationHelper'
+import { NavigationSelector, setupNavigationTree } from './navigationHelper'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
 const CreateStack = ({ stack }) => {
-    const companyCode = useSelector(state => state.config.code)
-    const path = useMemo(() => NavigationSelector(companyCode), [])
+    const companyCode = useSelector(state => state.config.data?.env.customerKey)
+    const companyStack = useMemo(() => NavigationSelector(companyCode), [])
 
     return (
         <Stack.Navigator>
             {
-                stack?.map(item => <Stack.Screen key={item} component={path[item]} />)
+                stack?.map(item => <Stack.Screen name={item} key={item} component={companyStack.default[item]} />)
             }
         </Stack.Navigator>
     )
 }
 
-export default function Private(props) {
-    const config = useSelector(state => state.config)
-    const navStack = useMemo(() => setupNavigationTree(config), [])
-
+export default function Private() {
+    const config = useSelector(state => state.config.data?.screen)
+    const navStack = useMemo(() => setupNavigationTree(config), [config])
+    console.log('navStack', navStack)
     return (
         <Tab.Navigator>
             {
                 navStack ? (
-                    Object.keys(navStack).map(field => <Tab.Screen name={field} component={() => <CreateStack stack={config[field]} />} />)
+                    Object.keys(navStack).map(field => <Tab.Screen name={field} key={field} component={() => <CreateStack stack={navStack[field]} />} />)
                 ) : null
             }
         </Tab.Navigator>

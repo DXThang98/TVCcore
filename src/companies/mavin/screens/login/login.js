@@ -5,7 +5,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 
 import { resetConfig } from '~slices/config'
-import { apiPost } from '~api/api'
+import { auth } from '~slices/auth'
 
 const validationSchema = Yup.object().shape({
     username: Yup.string().required('required'),
@@ -19,8 +19,9 @@ export default function Login() {
 
     const wait = (miliseconds = 1000) => new Promise((resolve) => setTimeout(() => { resolve('test') }, miliseconds))
 
-    const handleLogin = async () => {
-        const res = await apiPost()
+    const handleLogin = () => {
+        console.log('aaa')
+        dispatch(auth())
     }
 
     return (

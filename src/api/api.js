@@ -7,7 +7,7 @@ import { store } from '../../index'
 const api = async (baseURL = CORE_DEFAULT) => {
     const defaultBaseURL = store.getState().config.data?.env.linkApi
     const token = await getData('token')
-    console.log('defaultBaseURL', defaultBaseURL)
+
     return create({
         baseURL: defaultBaseURL ? defaultBaseURL : baseURL,
         headers: {
