@@ -1,4 +1,5 @@
-export const setupNavigationTree = (router = stack) => {
+export const setupNavigationTree = (router) => {
+    console.log('router', router)
     let tree = {}
 
     for (const item of router) {
@@ -11,7 +12,8 @@ export const setupNavigationTree = (router = stack) => {
 
 export const NavigationSelector = (company = null) => {
     switch (company) {
-
+        case 'MAVIN':
+            return require('../companies/mavin')
         case 'BVG':
             return require('../companies/bvg')
         default:
