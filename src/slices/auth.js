@@ -34,8 +34,8 @@ const authSlice = createSlice({
         })
     }
 })
-export const { getAuthRequest, getAuthSuccess, getAuthFailure, auth } = configSlice.actions
-export default configSlice.reducer
+export const { getAuthRequest, getAuthSuccess, getAuthFailure, auth } = authSlice.actions
+export default authSlice.reducer
 
 // export function getConfig(body) {
 //     return async dispatch => {
