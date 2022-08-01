@@ -1,50 +1,14 @@
 import React from "react"
 import { View, Text } from 'react-native'
+import { store } from '../../../index'
 
-export default {
-    Dashboard: () => <View><Text>Dashboard</Text></View>,
-    InOutMng: () => <View><Text>inout mng</Text></View>,
-    RegisterLeave: () => <View><Text>inout mng</Text></View>,
-    RegisterOt: () => <View><Text>inout mng</Text></View>,
-    RegisterLateInEarlyOut: () => <View><Text>inout mng</Text></View>,
-    ApproveLateInEarlyOut: () => <View><Text>inout mng</Text></View>,
-    ApproveLeave: () => <View><Text>inout mng</Text></View>,
-    ApproveOT: () => <View><Text>inout mng</Text></View>,
-    SalaryWebview: () => <View><Text>inout mng</Text></View>,
-    AddRegisterLeave: () => <View><Text>inout mng</Text></View>,
-    AddRegisterOT: () => <View><Text>inout mng</Text></View>,
-    AddRegisterLateInEarlyOut: () => <View><Text>inout mng</Text></View>,
-    RecordHrDetail: () => <View><Text>inout mng</Text></View>,
-    TimeSheetsWebview: () => <View><Text>inout mng</Text></View>,
-    BenefitWebview: () => <View><Text>inout mng</Text></View>,
-    GPSTimeClock: () => <View><Text>inout mng</Text></View>,
-    GPSWFHTimeClock: () => <View><Text>inout mng</Text></View>,
-    GPSWFHRegister: () => <View><Text>inout mng</Text></View>,
-    WifiTimeClock: () => <View><Text>inout mng</Text></View>,
-    QRRecordHr: () => <View><Text>inout mng</Text></View>,
-    Report: () => <View><Text>inout mng</Text></View>,
-    Calendar: () => <View><Text>inout mng</Text></View>,
-    Phonebook: () => <View><Text>inout mng</Text></View>,
-    PhonebookDetail: () => <View><Text>inout mng</Text></View>,
-    PhonebookSearch: () => <View><Text>inout mng</Text></View>,
-    OrgList: () => <View><Text>inout mng</Text></View>,
-    CompensationsAndBenefits: () => <View><Text>inout mng</Text></View>,
-    Benefits: () => <View><Text>inout mng</Text></View>,
-    BenefitWebview: () => <View><Text>inout mng</Text></View>,
-    Insurance: () => <View><Text>inout mng</Text></View>,
-    InsuranceHealth: () => <View><Text>inout mng</Text></View>,
-    InsuranceHealthCompanyStatistics: () => <View><Text>inout mng</Text></View>,
-    InsuranceHealthFamily: () => <View><Text>inout mng</Text></View>,
-    InsuranceHealthPrivileges: () => <View><Text>inout mng</Text></View>,
-    Notification: () => <View><Text>inout mng</Text></View>,
-    NotificationDetail: () => <View><Text>inout mng</Text></View>,
-    RecordHr: () => <View><Text>inout mng</Text></View>,
-    PersonalRelations: () => <View><Text>inout mng</Text></View>,
-    WorkingBefore: () => <View><Text>inout mng</Text></View>,
-    WorkingNow: () => <View><Text>inout mng</Text></View>,
-    Contract: () => <View><Text>inout mng</Text></View>,
-    TrainOut: () => <View><Text>inout mng</Text></View>,
-    RecordHrDetail: () => <View><Text>inout mng</Text></View>,
-    Settings: () => <View><Text>inout mng</Text></View>,
-    ChangePassword: () => <View><Text>inout mng</Text></View>,
+export default () => {
+
+    const obj = {}
+
+    store.getState().config?.data?.screen?.map(item => {
+        obj[item.container] = () => <View><Text>{item.container}</Text></View>
+    })
+
+    return obj
 }

@@ -42,6 +42,7 @@ export function auth(body) {
             console.log("response", response)
             dispatch(authSuccess(response.data))
         } catch (error) {
+            console.log("error", error)
             dispatch(authFailure(error.message))
         }
     }

@@ -12,7 +12,7 @@ export const setupNavigationTree = (router) => {
 
 export const NavigationSelector = (company = null) => {
     switch (company) {
-        case 'MAVIN':
+        case 'MAVINDEV':
             return require('../companies/mavin')
         case 'BVG':
             return require('../companies/bvg')
@@ -23,7 +23,7 @@ export const NavigationSelector = (company = null) => {
 
 export const getLoginComponent = (code = null) => {
     switch (code) {
-        case 'MAVIN':
+        case 'MAVINDEV':
             return require('../companies/mavin/screens/login').default
         case 'BVG':
             return require('../companies/bvg/screen/Login').default

@@ -38,8 +38,8 @@ export const apiGet = async (url = '', params = {}, config = {}) => {
 export const apiPost = async (url = '', body = {}, config = {}) => {
     const apiSauce = await api()
     const response = await apiSauce.post(url, body, config)
-
-    if (response.ok && response.code === 200) {
+    console.log("response=============", response)
+    if (response.ok && response.status === 200) {
         return response
     } else {
         throw new Error(JSON.stringify(response))
