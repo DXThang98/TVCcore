@@ -28,7 +28,7 @@ export default function Private() {
         <Tab.Navigator>
             {
                 navStack ? (
-                    Object.keys(navStack).map(field => <Tab.Screen name={field} key={field} component={() => <CreateStack stack={navStack[field]} />} />)
+                    Object.keys(navStack).map(field => <Tab.Screen name={field} key={field} children={() => <CreateStack stack={navStack[field]} />} />)
                 ) : null
             }
         </Tab.Navigator>

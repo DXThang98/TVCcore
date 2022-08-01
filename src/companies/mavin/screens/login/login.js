@@ -15,13 +15,9 @@ const validationSchema = Yup.object().shape({
 export default function Login() {
     const dispatch = useDispatch()
     const config = useSelector(state => state.config)
-    console.log('dawdawdawd', config)
 
-    const wait = (miliseconds = 1000) => new Promise((resolve) => setTimeout(() => { resolve('test') }, miliseconds))
-
-    const handleLogin = () => {
-        console.log('aaa')
-        dispatch(auth())
+    const handleLogin = values => {
+        dispatch(auth(values))
     }
 
     return (
