@@ -1,6 +1,6 @@
-import Colors from './Colors';
-import Fonts from './Fonts';
-import Metrics from './Metrics';
+import Colors from './color';
+import Fonts from './font';
+import Metrics from './metric';
 
 // This file is for a reusable grouping of Theme items.
 // Similar to an XML fragment layout in Android
@@ -117,7 +117,23 @@ const ApplicationStyles = {
         shadowRadius: 3.84,
         elevation: 5,
     },
-
+    margin: {
+        small: 5,
+        medium: 8,
+        standard: 10,
+        large: 12,
+    },
+    border: {
+        width: {
+            standard: 1,
+            thick: 2,
+        },
+        radius: {
+            pill: 50,
+            rounded: 5,
+            hard: 0,
+        }
+    }
 };
 
 export default ApplicationStyles;

@@ -1,6 +1,6 @@
 import font from './font'
 import color from './color'
 import metric from './metric'
-import appStyle from './app'
+import app from './app'
 
-export { font, color, metric, appStyle }
+export { font, color, metric, app }

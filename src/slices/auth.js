@@ -37,7 +37,6 @@ export function auth(body) {
     return async dispatch => {
         dispatch(authRequest())
         try {
-            console.log("body", body)
             const response = await apiPost('system/login', body, axiosConfig)
             console.log("response", response)
             dispatch(authSuccess(response.data))
@@ -45,5 +44,11 @@ export function auth(body) {
             console.log("error", error)
             dispatch(authFailure(error.message))
         }
+    }
+}
+
+export function fakeAuth() {
+    return dispatch => {
+        dispatch(authSuccess(true))
     }
 }

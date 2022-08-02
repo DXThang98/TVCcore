@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { apiGet, axiosConfig } from '~api/api'
+import { getData, storeData } from '~utils/storage'
 
 const initialState = {
     loading: false,
@@ -41,9 +42,21 @@ export function getConfig(body) {
         dispatch(getConfigRequest())
         try {
             const response = await apiGet('/getConfig', body, axiosConfig)
+            await storeData('customerCode', response.data.env.customerKey)
             dispatch(getConfigSuccess(response.data))
         } catch (error) {
             dispatch(getConfigFailure(error.message))
+        }
+    }
+}
+
+export function clearConfig() {
+    return async dispatch => {
+        try {
+            await storeData('customerCode', null)
+            dispatch(resetConfig())
+        } catch (err) {
+            console.log(err)
         }
     }
 }

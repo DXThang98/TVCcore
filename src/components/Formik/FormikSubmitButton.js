@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { useFormikContext } from 'formik'
+import { Button } from '~components'
 
-export function FormikSubmitButton() {
+export function FormikSubmitButton({ children, label }) {
+    const { handleSubmit } = useFormikContext()
+
     return (
-        <View>
-            <Text>FormikSubmitButton</Text>
-        </View>
+        <Button onPress={handleSubmit}>{children || label}</Button>
     )
 }
