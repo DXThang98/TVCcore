@@ -41,8 +41,8 @@ export default function SelectCompany(props) {
                 />
                 <Button title='submit' onPress={handleSubmit} />
                 {config.loading && <Text style={{ color: 'black', paddingTop: 20 }}>Loading...</Text>}
-                {config.error && <Text style={{ color: 'red', paddingTop: 20 }}>{message}</Text>}
-                {config.error && <Text>{JSON.stringify(data)}</Text>}
+                {config.error && <Text style={{ color: 'red', paddingTop: 20 }}>{config.message}</Text>}
+                {/* {config.error && <Text>{JSON.stringify(config.data)}</Text>} */}
             </View>
 
         </View>

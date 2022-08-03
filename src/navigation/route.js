@@ -24,7 +24,7 @@ export const route = [
         icon: '',
     },
     {
-        component: 'Attendace',
+        component: 'Attendance',
         type: 'stack',
         tab: 'Home',
         icon: '',

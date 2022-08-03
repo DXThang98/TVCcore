@@ -4,40 +4,56 @@ import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import { metric } from '~styles'
-import { list } from './list'
 
-const NavIcon = ({ icon, label, screen = 'Dashboard' }) => {
+const iconDictonary = {
+    Register: 'user-edit',
+    Approve: 'user-check',
+    Attendance: 'calendar-alt',
+    Paycheck: 'money-check',
+    News: 'newspaper',
+    GPS: 'rss',
+    Survey: 'file-alt',
+    Meeting: 'user-friends',
+}
+
+
+const NavIcon = ({ name }) => {
     const navigation = useNavigation()
-    console.log('screen', screen)
     return (
-        < TouchableOpacity style={styles.navIcon} onPress={() => navigation.navigate(screen)}>
+        < TouchableOpacity style={styles.navIcon} onPress={() => navigation.navigate(name)}>
             <View style={styles.iconContainer}>
-                <Icon name={icon} size={20} color={'black'} />
+                <Icon name={iconDictonary[name]} size={20} color={'white'} />
             </View>
-            <Text>{label}</Text>
+            <Text style={{ color: 'black' }}>{name}</Text>
         </TouchableOpacity>
     )
 }
 
 export function HorizontalNavBar(props) {
+    const navigation = useNavigation()
+    const navState = navigation.getState()
+    const routes = navState.routeNames.filter(item => item !== navState.routes[0].name)
+
     return (
-        <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            style={styles.container}
-        >
-            {
-                list.map(item => <NavIcon {...item} key={item.label} />)
-            }
-        </ScrollView>
+        <View>
+            <ScrollView
+                horizontal={true}
+                style={styles.container}
+                showsHorizontalScrollIndicator={true}
+                persistentScrollbar={true}
+            >
+                {
+                    routes.map((item, index) => <NavIcon key={index} name={item} />)
+                }
+            </ScrollView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        paddingBottom: 5,
-        borderBottomColor: 'gray',
-        borderBottomWidth: 1,
+        paddingVertical: 5,
+
     },
     navIcon: {
         width: metric.VW(25),
@@ -46,6 +62,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iconContainer: {
-        paddingVertical: 10,
+        width: 40,
+        height: 40,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
+        backgroundColor: '#6699ff'
     }
 })

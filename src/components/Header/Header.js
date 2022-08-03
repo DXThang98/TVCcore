@@ -3,8 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import { useSelector } from 'react-redux'
 import { color, metric, font } from '~styles'
 import { IconButton } from '~components'
-
-const uri = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMHnMihAfrXN_Ty-x55ylhaXU8Z8M-IZEZRw&usqp=CAU"
+import { randomAvatarSrc } from '~utils/randomAvatar'
 
 export function Header() {
     const info = useSelector(state => state)
@@ -12,19 +11,18 @@ export function Header() {
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image source={{ uri }} style={styles.image} />
+                <Image source={{ uri: randomAvatarSrc() }} style={styles.image} />
             </View>
             <View style={styles.infoContainer}>
                 <View>
-                    <Text style={styles.infoDate}>Ngày 03 tháng 08 năm 2020</Text>
                     <Text style={styles.infoName}>Xin chào, ABC</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>
                 <IconButton
                     onPress={() => console.log('aaaaa')}
-                    name='user'
-                    size={metric.images.medium}
+                    name='id-card'
+                    size={metric.images.small}
                     color={color.white}
                 />
             </View>
@@ -34,7 +32,7 @@ export function Header() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 50,
+        height: 60,
         backgroundColor: color.primary,
         display: 'flex',
         flexDirection: 'row'
@@ -52,16 +50,16 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         flex: 1,
-        paddingHorizontal: 20,
         display: 'flex',
         justifyContent: 'center'
     },
     infoDate: {
-        fontStyle: 'italic',
+
         fontSize: font.size.XXS
     },
     infoName: {
-
+        fontSize: font.size.large,
+        color: color.white,
     },
     buttonContainer: {
         width: 60,

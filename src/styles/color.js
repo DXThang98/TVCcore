@@ -1,7 +1,7 @@
 /** @format */
 
 const colors = {
-    primary: '#409AB2',
+    primary: '#6699ff',
     secondary: '#939B9F',
     tertiary: '#6D8A9C',
     accent: '#409AB2',

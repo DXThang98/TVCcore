@@ -17,7 +17,7 @@ export default function Public({ navigation }) {
             }}
         >
             {!companyCode && <Stack.Screen name='company' component={SelectCompany} />}
-            {companyCode && <Stack.Screen name='login' component={getLoginComponent(companyCode)} />}
+            {companyCode && <Stack.Screen name='login' component={getLoginComponent('core')} />}
         </Stack.Navigator>
     )
 }

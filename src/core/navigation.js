@@ -4,7 +4,7 @@ import Dashboard from './Dashboard'
 import Register from './Register'
 import Paycheck from './Paycheck'
 import News from './News'
-import GPSDetail from './GPSDetail'
+import GPS from './GPS'
 import Survey from './Survey'
 import Meeting from './Meeting'
 import PhonebookDetail from './PhonebookDetail'
@@ -19,7 +19,7 @@ export default {
     Register,
     Paycheck,
     News,
-    GPSDetail,
+    GPS,
     Survey,
     Meeting,
     PhonebookDetail,

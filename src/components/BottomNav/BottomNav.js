@@ -1,36 +1,8 @@
-import React, { useMemo, useState } from 'react'
 import { View, Text } from 'react-native'
-import { useSelector } from 'react-redux'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import React, { useState } from 'react'
 import Tabbar from "@mindinventory/react-native-tab-bar-interaction";
 import Icon from 'react-native-vector-icons/FontAwesome'
-
-import { NavigationSelector, newSetupNavigationTree } from './navigationHelper'
-import { route } from './route'
-
-
-const Stack = createNativeStackNavigator()
-
-const CreateStack = ({ stack }) => {
-    const companyStack = useMemo(() => NavigationSelector('core'), [])
-
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            {
-                stack?.map((item, index) =>
-                    <Stack.Screen
-                        name={item.component}
-                        key={index}
-                        component={companyStack.default[item.component]}
-                    />)
-            }
-        </Stack.Navigator>
-    )
-}
+import EmptyScreen from '~components/EmptyScreen/EmptyScreen';
 
 const tabs = [
     {
@@ -61,21 +33,20 @@ const tabs = [
 
 ];
 
-export default function Private() {
+export default function BottomNav() {
     const [tab, setTab] = useState('Home')
-    const config = useSelector(state => state.config.data?.screen)
-    const navStackSample = useMemo(() => newSetupNavigationTree(route), [config])
-
 
     const mainTabs = {
-        Home: <CreateStack stack={navStackSample['Home'].stack} />,
-        Contact: <CreateStack stack={navStackSample['Phonebook'].stack} />,
-        QRCode: <CreateStack stack={navStackSample['QR'].stack} />,
-        Notification: <CreateStack stack={navStackSample['Notification'].stack} />,
-        Profile: <CreateStack stack={navStackSample['User'].stack} />,
+        Home: <EmptyScreen />,
+        Contact: <EmptyScreen />,
+        QRCode: <EmptyScreen />,
+        Notification: <EmptyScreen />,
+        Profile: <EmptyScreen />,
     }
 
-    const handleTabChange = e => setTab(e.name)
+    const handleTabChange = e => {
+        setTab(e.name)
+    }
 
     return (
         <View style={{ flex: 1 }}>
