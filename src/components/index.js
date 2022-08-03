@@ -1,3 +1,7 @@
 export * from './ErrorMessage'
 export * from './Formik'
 export * from './Button'
+export * from './Avatar'
+export * from './IconButton'
+export * from './HorizontalNavBar'
+export * from './Header'

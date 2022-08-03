@@ -1,15 +1,17 @@
 import React from "react"
 import { View, Text } from 'react-native'
 
+import Dashboard from "./screens/Dashboard"
+
 export default {
-    Dashboard: () => <View><Text>Dashboard</Text></View>,
+    Dashboard: Dashboard,
     InOutMng: () => <View><Text>inout mng</Text></View>,
     RegisterLeave: () => <View><Text>inout mng</Text></View>,
-    RegisterOt: () => <View><Text>inout mng</Text></View>,
+    RegisterOt: () => <View><Text>register</Text></View>,
     RegisterLateInEarlyOut: () => <View><Text>inout mng</Text></View>,
     ApproveLateInEarlyOut: () => <View><Text>inout mng</Text></View>,
     ApproveLeave: () => <View><Text>inout mng</Text></View>,
-    ApproveOT: () => <View><Text>inout mng</Text></View>,
+    ApproveOT: () => <View><Text>approve</Text></View>,
     SalaryWebview: () => <View><Text>inout mng</Text></View>,
     AddRegisterLeave: () => <View><Text>inout mng</Text></View>,
     AddRegisterOT: () => <View><Text>inout mng</Text></View>,

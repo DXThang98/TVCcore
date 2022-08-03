@@ -1,10 +1,20 @@
 export const setupNavigationTree = (router) => {
-    console.log('router', router)
     let tree = {}
 
     for (const item of router) {
         if (item.navigation.includes('tab')) tree[item.tab] = [item.container]
         else tree[item.tab].push(item.container)
+    }
+
+    return tree
+}
+
+export const newSetupNavigationTree = (router) => {
+    let tree = {}
+
+    for (const item of router) {
+        if (item.type === 'tab') tree[item.component] = { icon: item.icon, stack: [] }
+        else tree[item.tab].stack.push(item)
     }
 
     return tree

@@ -40,9 +40,9 @@ export default function SelectCompany(props) {
                     onChangeText={setCustomerCode}
                 />
                 <Button title='submit' onPress={handleSubmit} />
-                {loading && <Text style={{ color: 'black', paddingTop: 20 }}>Loading...</Text>}
-                {error && <Text style={{ color: 'red', paddingTop: 20 }}>{message}</Text>}
-                {error && <Text>{JSON.stringify(data)}</Text>}
+                {config.loading && <Text style={{ color: 'black', paddingTop: 20 }}>Loading...</Text>}
+                {config.error && <Text style={{ color: 'red', paddingTop: 20 }}>{message}</Text>}
+                {config.error && <Text>{JSON.stringify(data)}</Text>}
             </View>
 
         </View>

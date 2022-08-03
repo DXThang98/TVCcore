@@ -38,6 +38,7 @@ const Metrics = {
         logoRadius: 100,
         logo1: 120,
     },
+    VW: (value) => (width / 100) * value
 };
 
 export default Metrics;
