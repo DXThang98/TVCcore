@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { View, Text } from 'react-native'
 
-export default function GPSDetail() {
+import { NavHeader } from '~components'
+import { app } from '~styles'
+
+export default function GPS() {
   return (
-    <View>
-      <Text>GPSDetail</Text>
+    <View style={app.screen.mainContainer}>
+      <NavHeader />
+      <Text>Register</Text>
     </View>
   )
 }

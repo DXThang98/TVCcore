@@ -5,6 +5,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 
 import { fakeAuth } from '~slices/auth'
+import { color, app } from '~styles'
 import { FormikInput, FormikSubmitButton } from '~components/Formik'
 
 const validationSchema = Yup.object().shape({
@@ -24,17 +25,10 @@ export default function Login() {
         formik.current?.setFieldError('username', 'wrong username')
     }
 
-    console.log('awdawd', formik)
-
     return (
-        <View style={{
-            flex: 1,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-        }}>
+        <View style={[app.screen.mainContainer, app.centerContent]}>
             <View style={{ width: '100%', paddingHorizontal: 30 }}>
-                <Text style={{ color: 'black' }}>LOGIN CORE</Text>
+                <Text style={{ color: color.primary, fontSize: 40, textAlign: 'center' }}>LOGIN CORE</Text>
                 <Formik
                     initialValues={{ username: '', password: '' }}
                     onSubmit={handleLogin}

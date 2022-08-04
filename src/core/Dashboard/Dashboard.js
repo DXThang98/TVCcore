@@ -2,13 +2,11 @@ import React, { useEffect } from 'react'
 import { View, Text } from 'react-native'
 import { Header, HorizontalNavBar } from '~components'
 
-export default function Dashboard() {
-    useEffect(() => {
-        console.log('awdawdawdwadawd')
-    }, [])
+import { app } from '~styles'
 
+export default function Dashboard() {
     return (
-        <View>
+        <View style={app.screen.mainContainer}>
             <Header />
             <HorizontalNavBar />
             <Text>Dashboard</Text>

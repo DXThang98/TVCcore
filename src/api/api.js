@@ -30,7 +30,7 @@ export const apiGet = async (url = '', params = {}, config = {}) => {
         response.status === 200 &&
         response.data.responseStatus > 0
     ) {
-        console.log("response", response)
+
         return response
     } else {
         throw new Error(JSON.stringify(response))

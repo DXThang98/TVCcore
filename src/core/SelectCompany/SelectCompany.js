@@ -19,7 +19,7 @@ export default function SelectCompany(props) {
     const { navigation } = props
 
     const config = useSelector(state => state.config)
-    console.log('config', config)
+
     useEffect(() => {
         if (config.data) navigation.navigate('login')
         if (config.error) formikRef.current.setFieldError('customerCode', config.message)

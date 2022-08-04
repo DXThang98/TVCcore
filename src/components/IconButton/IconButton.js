@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import { metric } from '~styles'
 
-export function IconButton({ name, color = 'black', onPress, size }) {
+export function IconButton({ name, color = 'black', onPress, size = metric.images.small }) {
     return (
         <View>
             <TouchableOpacity onPress={onPress} style={styles.button}>

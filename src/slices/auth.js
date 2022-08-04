@@ -38,10 +38,10 @@ export function auth(body) {
         dispatch(authRequest())
         try {
             const response = await apiPost('system/login', body, axiosConfig)
-            console.log("response", response)
+
             dispatch(authSuccess(response.data))
         } catch (error) {
-            console.log("error", error)
+
             dispatch(authFailure(error.message))
         }
     }

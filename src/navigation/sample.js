@@ -12,8 +12,6 @@ const CreateStack = ({ stack }) => {
     const companyStack = useMemo(() => NavigationSelector(companyCode), [])
     const a = companyStack.default()
 
-    console.log("companyStack", companyStack)
-
     return (
         <Stack.Navigator>
             {
@@ -26,7 +24,6 @@ const CreateStack = ({ stack }) => {
 export default function Private() {
     const config = useSelector(state => state.config.data?.screen)
     const navStack = useMemo(() => setupNavigationTree(config), [config])
-    console.log('navStack', navStack)
     return (
         <Tab.Navigator>
             {

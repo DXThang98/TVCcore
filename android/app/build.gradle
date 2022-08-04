@@ -166,6 +166,9 @@ android {
                 }
             }
         }
+
+        //for react native svg scanner
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
 
     if (isNewArchitectureEnabled()) {

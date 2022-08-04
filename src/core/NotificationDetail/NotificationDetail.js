@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { View, Text } from 'react-native'
+
+import { NavHeader } from '~components'
+import { app } from '~styles'
 
 export default function NotificationDetail() {
     return (
-        <View>
-            <Text>NotificationDetail</Text>
+        <View style={app.screen.mainContainer}>
+            <NavHeader />
+            <Text>Register</Text>
         </View>
     )
 }
