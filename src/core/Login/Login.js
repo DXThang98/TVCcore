@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -14,9 +14,17 @@ const validationSchema = Yup.object().shape({
 
 export default function Login() {
     const dispatch = useDispatch()
+    const formik = useRef(null)
 
-    const handleLogin = values => dispatch(fakeAuth())
+    const handleLogin = values => {
+        const { username } = values
+        //assume 1 is manager, 0 is employee
+        if (username === 'A') dispatch(fakeAuth({ role: 1 }))
+        else dispatch(fakeAuth({ role: 0 }))
+        formik.current?.setFieldError('username', 'wrong username')
+    }
 
+    console.log('awdawd', formik)
 
     return (
         <View style={{
@@ -31,6 +39,7 @@ export default function Login() {
                     initialValues={{ username: '', password: '' }}
                     onSubmit={handleLogin}
                     validationSchema={validationSchema}
+                    innerRef={formik}
                 >
                     <View>
                         <FormikInput

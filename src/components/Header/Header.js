@@ -5,7 +5,7 @@ import { color, metric, font } from '~styles'
 import { IconButton } from '~components'
 import { randomAvatarSrc } from '~utils/randomAvatar'
 
-export function Header() {
+export function Header({ rightIcon, onPressRight }) {
     const info = useSelector(state => state)
 
     return (
@@ -19,12 +19,15 @@ export function Header() {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <IconButton
-                    onPress={() => console.log('aaaaa')}
-                    name='id-card'
-                    size={metric.images.small}
-                    color={color.white}
-                />
+                {
+                    rightIcon && <IconButton
+                        onPress={onPressRight}
+                        name={rightIcon}
+                        size={metric.images.small}
+                        color={color.white}
+                    />
+                }
+
             </View>
         </View>
     )

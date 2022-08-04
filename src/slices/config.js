@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { apiGet, axiosConfig } from '~api/api'
-import { getData, storeData } from '~utils/storage'
+import { removeData, storeData } from '~utils/storage'
+import { fakeAuth } from './auth'
 
 const initialState = {
     loading: false,
@@ -14,7 +15,7 @@ const configSlice = createSlice({
     initialState,
     reducers: {
         getConfigRequest: state => ({
-            ...state,
+            ...initialState,
             loading: true
         }),
         getConfigSuccess: (state, { payload }) => ({
@@ -45,7 +46,8 @@ export function getConfig(body) {
             await storeData('customerCode', response.data.env.customerKey)
             dispatch(getConfigSuccess(response.data))
         } catch (error) {
-            dispatch(getConfigFailure(error.message))
+            const { data } = JSON.parse(error.message)
+            dispatch(getConfigFailure(data.message))
         }
     }
 }
@@ -53,8 +55,9 @@ export function getConfig(body) {
 export function clearConfig() {
     return async dispatch => {
         try {
-            await storeData('customerCode', null)
+            await removeData('customerCode')
             dispatch(resetConfig())
+            dispatch(fakeAuth(null))
         } catch (err) {
             console.log(err)
         }

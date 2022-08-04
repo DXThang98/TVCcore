@@ -20,3 +20,11 @@ export const getData = async (key) => {
         console.error(err)
     }
 }
+
+export const removeData = async (key) => {
+    try {
+        return await AsynscStorage.removeItem(key)
+    } catch (err) {
+        console.error(err)
+    }
+}

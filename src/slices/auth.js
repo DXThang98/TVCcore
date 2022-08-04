@@ -47,8 +47,8 @@ export function auth(body) {
     }
 }
 
-export function fakeAuth() {
+export function fakeAuth(body) {
     return dispatch => {
-        dispatch(authSuccess(true))
+        dispatch(authSuccess(body))
     }
 }

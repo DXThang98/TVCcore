@@ -12,7 +12,7 @@ const ApplicationStyles = {
     screen: {
         mainContainer: {
             flex: 1,
-            backgroundColor: Colors.grey.lightest,
+            backgroundColor: Colors.white,
         },
         mainContainerSafeAreaAddon: {
             backgroundColor: Colors.white,
@@ -30,7 +30,7 @@ const ApplicationStyles = {
         },
         container: {
             flex: 1,
-            paddingTop: Metrics.baseMargin,
+            padding: Metrics.baseMargin,
             backgroundColor: Colors.transparent,
         },
         section: {
@@ -133,6 +133,11 @@ const ApplicationStyles = {
             rounded: 5,
             hard: 0,
         }
+    },
+    centerContent: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
     }
 };
 

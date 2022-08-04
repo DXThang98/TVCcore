@@ -8,8 +8,7 @@ const image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMHnMihAfrX
 export default function Dashboard() {
     return (
         <View>
-            <Header />
-            <HorizontalNavBar />
+
             <View>
                 <Text>
                     MAVIN Dashboard
