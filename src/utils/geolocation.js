@@ -1,3 +1,6 @@
+import Geolocation from 'react-native-geolocation-service'
+import { PermissionsAndroid, Platform } from 'react-native'
+
 const toRad = (x) => x * Math.PI / 180
 const earthRadius = 6371
 
@@ -19,4 +22,35 @@ export const distanceBetween = (pointA, pointB) => {
     const distance = 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine)) * earthRadius
 
     return distance
+}
+
+export const getLocationPermission = async() => {
+    if(Platform.OS === 'ios'){
+        const permission = await Geolocation.requestAuthorization('whenInUse')
+        if(permission === 'granted')return true
+    }
+
+    if(Platform.OS === 'android'){
+        const permission = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+        if(permission === PermissionsAndroid.RESULTS.GRANTED) return true
+    }
+
+    return false
+}
+
+export const getLocation = async(callback) => {
+    const permission = await getLocationPermission()
+    if(permission){
+        Geolocation.getCurrentPosition(
+            (position) => {
+              callback(position)
+            },
+            (error) => {
+              throw new Error(error.message)
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );
+    } else {
+        throw new Error('you need permission to use this feature')
+    }
 }

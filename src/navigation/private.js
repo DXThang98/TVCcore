@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator()
 
 const CreateStack = ({ stack }) => {
     const companyStack = useMemo(() => NavigationSelector('core'), [])
-
+    console.log('awdawdawd', NavigationSelector('core'))
     return (
         <Stack.Navigator
             screenOptions={{
