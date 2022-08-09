@@ -1,2 +1,2 @@
-import QRDetail from "./QRDetail"
-export default QRDetail
+import QRDetail from './QRDetail';
+export default QRDetail;

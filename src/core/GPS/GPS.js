@@ -8,7 +8,7 @@ import { app } from '~styles'
 export default function GPS() {
 
   const getUserLocation = () => {
-    try{
+    try {
       getLocation((value) => console.log('value', value))
     } catch (err) {
       console.dir(err)
