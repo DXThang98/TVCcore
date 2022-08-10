@@ -5,7 +5,7 @@ import {IconButton} from '~components';
 
 import styles from './styles';
 
-export function AttendanceTab({type, date, info, key}) {
+export function AttendanceTab({type, date, info}) {
   const [display, setDisplay] = useState(false);
   const {checkinTime, checkoutTime, DMVS, OT} = info;
 
@@ -18,7 +18,7 @@ export function AttendanceTab({type, date, info, key}) {
   };
 
   return (
-    <View style={styles.container} key={key}>
+    <View style={styles.container}>
       <View style={styles.overview}>
         <View style={styles.icon__container}>
           <View style={styles.icon}>

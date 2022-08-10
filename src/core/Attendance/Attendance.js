@@ -1,37 +1,53 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useRef, useEffect} from 'react';
 import {View, ScrollView, Text} from 'react-native';
+import moment from 'moment';
 
 import {NavHeader, Calendar, AttendanceTab} from '~components';
-import {app} from '~styles';
+import {app, color} from '~styles';
+
+import {data} from './sample';
+
+const colorSchema = {
+  x: 'green',
+  'x/2': 'yellow',
+  n: 'red',
+  p: 'blue',
+  ct: 'gray',
+};
+
+const parseData = data => {
+  const newData = {};
+
+  for (let i = 0; i < data.length; i++) {
+    const formatDate = moment(data[i].date).format('YYYY-MM-DD');
+    newData[formatDate] = {
+      selected: true,
+      selectedColor: colorSchema[data[i].type],
+    };
+  }
+
+  return newData;
+};
 
 export default function Attendance() {
-  const memo = useMemo(() => {
-    const arr = [];
-    const object = {
-      type: 'x',
-      date: '25/10/2020',
-      info: {
-        checkinTime: '08:30:00',
-        checkoutTime: '18:00:00',
-        DMVS: 0,
-        OT: 0,
-      },
-    };
-    for (let i = 0; i < 30; i++) {
-      arr.push(<AttendanceTab key={i} {...object} />);
-    }
+  const calendar = useRef();
 
-    return arr;
-  }, []);
+  const handlePress = value => {
+    console.log('value', value);
+  };
 
   return (
     <View style={app.screen.mainContainer}>
       <NavHeader />
       <ScrollView horizontal={false} style={app.screen.container}>
-        <View>
-          <Calendar />
+        <View ref={calendar}>
+          <Calendar data={parseData(data)} onPress={handlePress} />
         </View>
-        <View>{memo}</View>
+        <View>
+          {data.map((item, index) => (
+            <AttendanceTab key={index} {...item} />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
