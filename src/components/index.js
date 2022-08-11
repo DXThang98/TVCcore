@@ -8,3 +8,5 @@ export * from './Header';
 export * from './NavHeader';
 export * from './Calendar';
 export * from './AttendanceTab';
+export * from './Alert';
+export * from './Toast';

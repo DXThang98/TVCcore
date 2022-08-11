@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 
 import {NavHeader, Button} from '~components';
+import {Alert} from '~components/Alert';
 import {app} from '~styles';
 import {checkTouchID} from '~utils/biometry';
 
@@ -11,6 +12,11 @@ export default function Checkin() {
   const handleGetBiometric = async () => {
     const data = await checkTouchID();
     setData(data);
+    Alert.alert('awdawdawdawdawdawdadawdasdawdasdawd', {title: 'test title'});
+  };
+
+  const handleAlert = () => {
+    Alert.alert('abcxyz');
   };
 
   return (
@@ -23,6 +29,7 @@ export default function Checkin() {
         </Text>
       ))}
       <Button onPress={handleGetBiometric}>finger</Button>
+      <Button onPress={handleAlert}>Alert</Button>
     </View>
   );
 }
