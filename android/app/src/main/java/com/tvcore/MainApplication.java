@@ -13,6 +13,10 @@ import com.tvcore.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+// Tanleica
+import com.horcrux.svg.SvgPackage;
+// end
+
 //additional settings
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 //////////////////////////////////////////////////////////
@@ -34,6 +38,11 @@ public class MainApplication extends Application implements ReactApplication {
           // packages.add(new MyReactNativePackage());
 
           // packages.add(new SplashScreenReactPackage());
+
+          // Tanleica
+          packages.add(new SvgPackage());
+          // end
+
           return packages;
           
         }
