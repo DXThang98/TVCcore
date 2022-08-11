@@ -270,6 +270,10 @@ dependencies {
     implementation project(':react-native-splash-screen')
     /////////////////////////////////////////////////////
 
+    // Tanleica
+    implementation project(':react-native-svg')
+    // end
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }

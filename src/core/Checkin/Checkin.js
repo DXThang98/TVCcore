@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 
-import {NavHeader, Button} from '~components';
-import {app} from '~styles';
-import {checkTouchID} from '~utils/biometry';
+import { NavHeader, Button } from '~components';
+import { app } from '~styles';
+import { checkTouchID } from '~utils/biometry';
 
 export default function Checkin() {
   const [data, setData] = useState({});
@@ -18,7 +18,7 @@ export default function Checkin() {
       <NavHeader />
       <Text>Register</Text>
       {Object.keys(data).map(item => (
-        <Text style={{color: 'black'}}>
+        <Text style={{ color: 'black' }}>
           {item}: {data[item].toString()}
         </Text>
       ))}
