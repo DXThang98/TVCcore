@@ -79,3 +79,4 @@ export class Alert extends Component {
     return null;
   }
 }
+

@@ -4,6 +4,7 @@ import {PermissionsAndroid, Platform} from 'react-native';
 const toRad = x => (x * Math.PI) / 180;
 const earthRadius = 6371;
 
+//remember [longitude, latittude]
 export const distanceBetween = (pointA, pointB) => {
   const [lngA, latA] = pointA;
   const [lngB, latB] = pointB;
