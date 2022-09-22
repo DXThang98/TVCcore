@@ -1,49 +1,31 @@
 import { create } from 'apisauce'
 import { getData } from '~utils/storage'
-import { getApiError } from '~utils/error'
 import { CORE_DEFAULT } from '~constants/api'
 import { store } from '../../index'
 
-const api = async (baseURL = CORE_DEFAULT) => {
-    const defaultBaseURL = store.getState().config.data?.env.linkApi
-    const token = await getData('token')
-
-    return create({
-        baseURL: defaultBaseURL ? defaultBaseURL : baseURL,
+const instance = create({
+        baseURL: CORE_DEFAULT,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': `Bearer ${token}`
         },
         timeout: 10000,
-    })
-}
+})
 
-export const apiGet = async (url = '', params = {}, config = {}) => {
+instance.axiosInstance.interceptors.request.use(async(requestConfig) => {
+    const defaultBaseURL = store.getState().config.data?.env.linkApi
+    const token = await getData('token')
 
-    const apiSauce = await api()
-    delete apiSauce.headers["Authorization"]
-    const response = await apiSauce.get(url, params, config)
+    if(defaultBaseURL) requestConfig.baseURL = 'https://cosmitto-server.herokuapp.com/'
+    if(token) requestConfig.headers.Authorization = `Bearer ${token}`
 
-    if (
-        response.ok &&
-        response.status === 200 &&
-        response.data.responseStatus > 0
-    ) {
+    return requestConfig
+})
 
-        return response
-    } else {
-        throw new Error(JSON.stringify(response))
-        //throw new Error(getApiError(response))
-    }
-}
+instance.axiosInstance.interceptors.response.use((onSuccess) => {
+    console.log('success', onSuccess)
+}, (onError) => {
+    console.log('error', onError.toJSON())
+})
 
-export const apiPost = async (url = '', body = {}, config = {}) => {
-    const apiSauce = await api()
-    const response = await apiSauce.post(url, body, config)
-    if (response.ok && response.status === 200) {
-        return response
-    } else {
-        throw new Error(JSON.stringify(response))
-    }
-}
+export default instance
