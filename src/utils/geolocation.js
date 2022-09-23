@@ -16,11 +16,12 @@ export const distanceBetween = (pointA, pointB) => {
   const radDeltaLng = toRad(deltaLng);
 
   const haversine =
-    Math.sin(radDeltaLat / 2) * Math.sin(radDeltaLat / 2) +
+    Math.sin(radDeltaLat / 2) * 
+    Math.sin(radDeltaLat / 2) +
     Math.cos(toRad(latA)) *
-      Math.cos(toRad(latB)) *
-      Math.sin(radDeltaLng / 2) *
-      Math.sin(radDeltaLng / 2);
+    Math.cos(toRad(latB)) *
+    Math.sin(radDeltaLng / 2) *
+    Math.sin(radDeltaLng / 2)
 
   const distance =
     2 *
@@ -46,19 +47,33 @@ export const getLocationPermission = async () => {
   return false;
 };
 
-export const getLocation = async (callbackSuccess, callbackError) => {
+const getLocation = async (onSuccess, onError) => {
   const permission = await getLocationPermission();
   if (permission) {
-    Geolocation.getCurrentPosition(
-      position => {
-        callbackSuccess(position);
-      },
-      error => {
-        callbackError(error);
-      },
+    return Geolocation.getCurrentPosition(
+      position => onSuccess(position),
+      error => onError(error),
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
   } else {
     throw new Error('you need permission to use this feature');
   }
 };
+
+const asyncGetLocation = () => {
+  try{ 
+    return new Promise((resolve) => {
+      getLocation(
+        (success) => {
+          const { longitude, latitude } = success.coords
+          resolve([longitude, latitude])
+        },
+        (error) => { throw new Error(error) }
+      )
+    })
+  } catch (err) {
+    throw err
+  }
+}
+
+export { asyncGetLocation as getLocation }
